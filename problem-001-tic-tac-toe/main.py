@@ -1,12 +1,7 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+"""
+This code creates a game for two human players to player Tic Tak Toe using a
+simple commandline text based graphics display
+"""
 
 
 def print_board(board):
@@ -18,11 +13,7 @@ def print_board(board):
 
 
 def print_position_selection():
-    for i in range(3):
-        print(f"{3 * i + 1} | {3 * i + 2} | {3 * i + 3}")
-        if i > 1:
-            return
-        print(f'- - - - -')
+    print_board([str(i+1) for i in range(9)])
 
 
 def if_valid_move(board, move_selection, player_mark):
@@ -85,6 +76,8 @@ def print_welcome(board):
     print('')
 
 
+
+
 def play_game():
     # create an empty board
     board = ['.']*9
@@ -105,9 +98,7 @@ def play_game():
         if is_game_over(board):
             return
 
-# Press the green button in the gutter to run the script.
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
     play_game()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
