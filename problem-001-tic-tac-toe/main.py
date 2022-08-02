@@ -25,14 +25,21 @@ def if_valid_move(board, move_selection, player_mark):
 
 
 def make_move(board, player_mark: str):
-    valid_move = False
-    while not valid_move:
-        move_selection = int(input(f'player{player_mark} select your move'))
+    """
+    Ask for player move, checks validity, also exits program if 'exit' is typed
+    :param board:
+    :param player_mark:
+    :return:
+    """
+    while True:
+        move_selection = input(f'player{player_mark} select your move')
+        if move_selection == 'exit':
+            exit(0)
 
-        if if_valid_move(board, move_selection, player_mark):
+        if if_valid_move(board, int(move_selection), player_mark):
             return
-        else:
-            print('not a valid move, try again')
+
+        print('not a valid move, try again')
 
 
 def is_game_over(board):
