@@ -1,7 +1,8 @@
-# This is a sample Python script.
+from tkinter import *
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+WINDOW_WIDTH = 600
+WINDOW_HEIGHT = 400
+WINDOW_POS = '300+300'
 
 
 def print_hi(name):
@@ -9,8 +10,16 @@ def print_hi(name):
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 
+def run():
+    ws = Tk()
+
+    ws.title('Starfield')
+    ws.geometry(f'{WINDOW_WIDTH}x{WINDOW_HEIGHT}+{WINDOW_POS}')
+    mainloop()
+
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
+    run()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
