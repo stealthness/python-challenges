@@ -58,8 +58,11 @@ def is_game_over(board):
 
 def has_player_won(board, player_mark):
     for i in range(3):
-        if [board[i*3], board[i*3+1], board[i*3+2]] == ['O', 'O', 'O']:
+        if [board[i*3], board[i*3+1], board[i*3+2]] == [player_mark, player_mark, player_mark]:
             return True
+        if [board[i], board[3+i], board[6+i]] == [player_mark, player_mark, player_mark]:
+            return True
+
 
 
 def play_game():
