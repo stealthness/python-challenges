@@ -5,6 +5,11 @@ simple commandline text based graphics display
 
 
 def print_board(board):
+    """
+    Prints the board state a command line text based graphic
+    :param board:
+    :return:
+    """
     for i in range(3):
         print(f"{board[3*i+0]} | {board[3*i+1]} | {board[3*i+2]}")
         if i > 1:
@@ -13,6 +18,10 @@ def print_board(board):
 
 
 def print_position_selection():
+    """
+    Prints the board position numbers a command line text based graphic
+    :return:
+    """
     print_board([str(i+1) for i in range(9)])
 
 
