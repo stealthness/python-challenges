@@ -57,27 +57,39 @@ def is_game_over(board):
 
 
 def has_player_won(board, player_mark):
+    """
+    Check the board to see if player_mark has won
+    :param board:
+    :param player_mark:
+    :return:
+    """
+    mark_line = [player_mark]*3
     for i in range(3):
-        if [board[i*3], board[i*3+1], board[i*3+2]] == [player_mark, player_mark, player_mark]:
+        # checks horizontal
+        if [board[i*3], board[i*3+1], board[i*3+2]] == mark_line:
             return True
-        if [board[i], board[3+i], board[6+i]] == [player_mark, player_mark, player_mark]:
+        # checks the vertical
+        if [board[i], board[3+i], board[6+i]] == mark_line:
             return True
-
-    if [board[0], board[4], board[8]] == [player_mark, player_mark, player_mark]:
+    # check the diagonals
+    if [board[0], board[4], board[8]] == mark_line or [board[2], board[4], board[6]] == mark_line:
         return True
 
-    if [board[2], board[4], board[6]] == [player_mark, player_mark, player_mark]:
-        return True
+    return False
+
+
+def print_welcome(board):
+    print('Welcome to Tic Tac Toe Game (Noughts and Crosses)\n')
+    print('Select position using:')
+    print_position_selection()
+    print('')
 
 
 def play_game():
-    print('Start game\n')
+    # create an empty board
     board = ['.']*9
-    print_board(board)
-    print('Select position using:')
-    print_position_selection()
-
-    while not is_game_over(board):
+    print_welcome(board)
+    while True:
         make_move(board, 'O')
         print_board(board)
         if has_player_won(board, 'O'):
@@ -90,7 +102,8 @@ def play_game():
         if has_player_won(board, 'X'):
             print(f'PlayerX has won')
             return
-
+        if is_game_over(board):
+            return
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
