@@ -86,15 +86,23 @@ def has_player_won(board, player_mark):
 
 
 def print_welcome(board):
+    """
+    Prints The Welcome and instructions for the game
+    :param board:
+    :return:
+    """
     print('Welcome to Tic Tac Toe Game (Noughts and Crosses)\n')
     print('Select position using:')
     print_position_selection()
     print('')
-
-
+    print('To win the game a player need to place their mark in line of three. Player O starts first')
 
 
 def play_game():
+    """
+    The main program loop
+    :return:
+    """
     # create an empty board
     board = ['.']*9
     print_welcome(board)
