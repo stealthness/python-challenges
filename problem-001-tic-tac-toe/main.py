@@ -63,6 +63,11 @@ def has_player_won(board, player_mark):
         if [board[i], board[3+i], board[6+i]] == [player_mark, player_mark, player_mark]:
             return True
 
+    if [board[0], board[4], board[8]] == [player_mark, player_mark, player_mark]:
+        return True
+
+    if [board[2], board[4], board[6]] == [player_mark, player_mark, player_mark]:
+        return True
 
 
 def play_game():
