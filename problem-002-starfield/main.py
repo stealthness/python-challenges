@@ -1,4 +1,5 @@
 import random
+import time
 from tkinter import *
 
 WINDOW_WIDTH = 800
@@ -6,6 +7,7 @@ WINDOW_HEIGHT = 600
 WINDOW_POS = '300+300'
 STAR_SIZE = 4
 INITIAL_NUMBER_OF_STARS = 10
+REFRESH_RATE = 0.01
 
 t = None
 
@@ -34,15 +36,25 @@ def create_canvas(window):
     canvas.pack(fill="both", expand=True)
     return canvas
 
+def animate_stars(window, canvas, dx, dy):
+    random_start_coords = create_random_starfield()
+    canvas_stars = []
+    for star_coords in random_start_coords:
+        canvas_stars.append(canvas.create_oval(star_coords[0], star_coords[1], star_coords[0]+STAR_SIZE, star_coords[1]+STAR_SIZE, fill='white'))
+
+    while True:
+        for star in canvas_stars:
+            canvas.move(star, dx, dy)
+
+        window.update()
+        time.sleep(REFRESH_RATE)
+
 
 def run():
     animation_window = create_window()
     animation_canvas = create_canvas(animation_window)
-    t = create_random_starfield()
+    animate_stars(animation_window, animation_canvas, 1, 1)
     print(t)
-    for s in t:
-        pass
-        animation_canvas .create_oval(s[0], s[1], s[0]+STAR_SIZE, s[1]+STAR_SIZE, fill='white')
 
     mainloop()
 
