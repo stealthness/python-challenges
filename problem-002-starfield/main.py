@@ -1,12 +1,13 @@
 import random
 from tkinter import *
 
-WINDOW_WIDTH = 600
-WINDOW_HEIGHT = 400
+WINDOW_WIDTH = 800
+WINDOW_HEIGHT = 600
 WINDOW_POS = '300+300'
-STAR_SIZE = 2
+STAR_SIZE = 4
 INITIAL_NUMBER_OF_STARS = 10
 
+t = None
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
@@ -20,19 +21,28 @@ def create_random_starfield():
     return stars
 
 
+def create_window():
+    window = Tk()
+    window.title("Starfield")
+    window.geometry(f'{WINDOW_WIDTH}x{WINDOW_HEIGHT}+{WINDOW_POS}')
+    return window
+
+
+def create_canvas(window):
+    canvas = Canvas(window)
+    canvas.configure(bg="black")
+    canvas.pack(fill="both", expand=True)
+    return canvas
+
+
 def run():
-    root = Tk()
-    root.title('Starfield')
-    root.geometry(f'{WINDOW_WIDTH}x{WINDOW_HEIGHT}+{WINDOW_POS}')
-    canvas = Canvas(root, bg='black')
-    canvas.pack()
-
-
-    canvas.grid()
-    for s in create_random_starfield():
+    animation_window = create_window()
+    animation_canvas = create_canvas(animation_window)
+    t = create_random_starfield()
+    print(t)
+    for s in t:
         pass
-        canvas.create_oval(s[0], s[1], s[0]+STAR_SIZE, s[1]+STAR_SIZE, fill='white')
-
+        animation_canvas .create_oval(s[0], s[1], s[0]+STAR_SIZE, s[1]+STAR_SIZE, fill='white')
 
     mainloop()
 
