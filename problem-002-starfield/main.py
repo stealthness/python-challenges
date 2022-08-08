@@ -7,7 +7,9 @@ WINDOW_HEIGHT = 600
 WINDOW_POS = '300+300'
 STAR_SIZE = 4
 INITIAL_NUMBER_OF_STARS = 10
-REFRESH_RATE = 0.01
+REFRESH_RATE = 0.1
+
+speed_direction = (0, 0)
 
 t = None
 
@@ -36,18 +38,42 @@ def create_canvas(window):
     canvas.pack(fill="both", expand=True)
     return canvas
 
+
+def mouse_moved(event):
+    dx, dy = 0, 0
+    if event.y > WINDOW_HEIGHT/2:
+        dy = 1
+    else:
+        dy = -1
+
+    if event.x > WINDOW_WIDTH/2:
+        dx = 1
+    else:
+        dx = -1
+
+    speed = (dx, dy)
+    print(f'moved {event.x}, {event.y}  -- {speed}')
+    return dx, dy
+
 def animate_stars(window, canvas, dx, dy):
     random_start_coords = create_random_starfield()
     canvas_stars = []
+
+
+    text_box = canvas.create_text(100, 50, text=f'Stars = {INITIAL_NUMBER_OF_STARS}', fill="#ee0000")
+
     for star_coords in random_start_coords:
         canvas_stars.append(canvas.create_oval(star_coords[0], star_coords[1], star_coords[0]+STAR_SIZE, star_coords[1]+STAR_SIZE, fill='white'))
 
     while True:
+        speed = canvas.bind('<Motion>', mouse_moved)
+        print(speed)
         for star in canvas_stars:
-            canvas.move(star, dx, dy)
-
+            canvas.move(star, speed[0], speed[1])
         window.update()
         time.sleep(REFRESH_RATE)
+
+
 
 
 def run():
